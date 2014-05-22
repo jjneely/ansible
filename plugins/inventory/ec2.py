@@ -412,6 +412,14 @@ class Ec2Inventory(object):
         for k, v in instance.tags.iteritems():
             key = self.to_safe("tag_" + k + "=" + v)
             self.push(self.inventory, key, dest)
+            # Group by the Name tag if present
+            if k == "Name":
+                self.push(self.inventory, v, dest)
+            # Support arbitrary groups via the ansible_groups tag
+            if k == "ansible_groups":
+                tokens = v.split(',')
+                for i in tokens:
+                    self.push(self.inventory, self.to_safe(i.strip()), dest)
 
         # Inventory: Group by Route53 domain names if enabled
         if self.route53_enabled:
