@@ -1,3 +1,9 @@
+ansible (1.6.2-1.42lines) unstable; urgency=low
+
+  * cherry-pick https://github.com/ansible/ansible/pull/7608
+
+ -- Jack Neely <jjneely@42lines.net>  Tue, 03 Jun 2014 15:52:00 -0500
+
 ansible (1.6.2) unstable; urgency=low
 
   * 1.6.2 release
